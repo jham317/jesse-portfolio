@@ -1,13 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import data from './data';
+import HeroSection from './components/HeroSection';
+import NavBar from './components/NavBar';
+import AboutMeSection from './components/AboutMeSection';
+import ProjectSection from './components/ProjectSection';
+import ContactSection from './components/ContactSection';
 
-function App() {
+const App = () => {
+  const { hero, aboutMe, projects, contact } = data;
+
   return (
-    <div>
-      <h1>Hello world hello world hellllloooo
-      </h1>
-    </div>
+    <>
+      <NavBar />
+      <HeroSection hero={hero} />
+      <AboutMeSection aboutMe={aboutMe} />
+      <ProjectSection projects={projects} />
+      <ContactSection contact={contact} />
+    </>
   );
-}
+};
 
 export default App;
