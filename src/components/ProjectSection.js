@@ -1,9 +1,8 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import data from '../data'; // Import the data
+import data from '../data';
+import styled from 'styled-components';
 
 const ProjectsWrapper = styled.div`
-  background-color: #f5f5f5;
   padding: 50px;
 `;
 
@@ -28,11 +27,7 @@ const ProjectImage = styled.img`
   max-width: 100%;
   height: auto;
   margin: 10px;
-  ${props =>
-    !props.show &&
-    css`
-      display: none;
-    `}
+  display: ${props => (props.hidden ? 'none' : 'block')};
 `;
 
 const NavigationButton = styled.button`
@@ -44,7 +39,7 @@ const NavigationButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0; /* Hide buttons by default */
+  opacity: 0;
   transition: opacity 0.3s;
 
   &:hover {
@@ -70,11 +65,10 @@ const ArrowButtonWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  pointer-events: none; /* Prevent button clicks from interfering with image hover */
+  pointer-events: none;
   opacity: 0;
 
   ${ProjectCard}:hover & {
-    /* Show arrow buttons when hovering on the card */
     opacity: 1;
   }
 `;
@@ -96,7 +90,7 @@ const ProjectLink = styled.a`
 `;
 
 const ProjectSection = () => {
-  const { projects } = data; // Destructure projects from data
+  const { projects } = data;
 
   return (
     <ProjectsWrapper id="projects">
@@ -109,7 +103,7 @@ const ProjectSection = () => {
               key={idx}
               src={url}
               alt={`Project ${index + 1}`}
-              show={project.imageUrl.length === 1 || idx === 0} // Use show prop within the styled.img
+              hidden={project.imageUrl.length !== 1 && idx !== 0} // Use hidden prop within the styled.img
             />
           ))}
           {project.imageUrl.length > 1 && (

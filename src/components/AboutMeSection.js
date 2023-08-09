@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import data from '../data'; // Import the extended data object
+import data from '../data';
 
 const AboutMeWrapper = styled.div`
-  background-color: #f9f9f9;
   padding: 50px;
 `;
 

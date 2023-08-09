@@ -1,51 +1,98 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FiMail, FiGithub, FiLinkedin } from 'react-icons/fi'; // You might need to install the react-icons package.
-
 
 const ContactWrapper = styled.div`
-  background-color: #f5f5f5;
   padding: 50px;
 `;
 
-const ContactLink = styled.a`
-  display: inline-block;
-  margin: 10px;
-  color: #007bff;
-  text-decoration: none;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
 `;
 
-const IconWrapper = styled.span`
-  margin-right: 5px;
+const Input = styled.input`
+  background-color: #ffffff;  // This sets the background to white
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.2s;
+
+  &:focus {
+    border: 1px solid #007bff;
+    outline: none;
+  }
 `;
 
-const ContactSection = ({ contact }) => {
-  const { email, github, linkedin } = contact;
+const Textarea = styled.textarea`
+  background-color: #ffffff;  
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border 0.2s;
 
-  return (
-    <ContactWrapper id="contact">
-      <h2>Contact</h2>
-      <ContactLink href={`mailto:${email}`}>
-        <IconWrapper>
-          <FiMail />
-        </IconWrapper>
-        {email}
-      </ContactLink>
-      <ContactLink href={github} target="_blank" rel="noopener noreferrer">
-        <IconWrapper>
-          <FiGithub />
-        </IconWrapper>
-        GitHub
-      </ContactLink>
-      <ContactLink href={linkedin} target="_blank" rel="noopener noreferrer">
-        <IconWrapper>
-          <FiLinkedin />
-        </IconWrapper>
-        LinkedIn
-      </ContactLink>
-      {/* Add more contact information as needed */}
-    </ContactWrapper>
-  );
+  &:focus {
+    border: 1px solid #007bff;
+    outline: none;
+  }
+`;
+
+
+
+const Button = styled.button`
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const ContactSection = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(formData);
+        // Here you would typically send formData to a server to handle the email sending.
+    };
+
+    return (
+        <ContactWrapper id="contact">
+            <h2>Contact Me</h2>
+            <Form onSubmit={handleSubmit}>
+                <Input 
+                    type="text" 
+                    name="name" 
+                    placeholder="Your Name" 
+                    value={formData.name} 
+                    onChange={handleChange}
+                    required 
+                />
+<Input type="email" placeholder="Your Email" required />
+<Textarea rows="5" placeholder="Your Message" required></Textarea>
+
+                <Button type="submit">Send</Button>
+            </Form>
+        </ContactWrapper>
+    );
 };
 
 export default ContactSection;

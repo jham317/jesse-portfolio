@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact } from 'react-icons/fa';
 import data from '../data';
 
+
 const HeroSectionWrapper = styled.div`
-  background-color: #f5f5f5;
   padding: 50px;
   text-align: center;
 `;
@@ -28,37 +28,37 @@ const Description = styled.p`
 const SkillList = styled.ul`
   list-style: none;
   padding: 0;
-  margin-top: 40px; /* Increase spacing from the description */
-  display: flex; /* Arrange the items in a row */
-  justify-content: space-between; /* Distribute items evenly across the available space */
+  margin-top: 40px; 
+  display: flex;
+  justify-content: space-between; 
 `;
 
 const SkillItem = styled.li`
   font-size: 20px;
   display: flex;
   align-items: center;
-  margin-right: 20px; /* Add some space between the icons */
+  margin-right: 20px; 
 `;
 
 const IconWrapper = styled.span`
-  font-size: 24px; /* Adjust the icon size */
-  margin-right: 5px; /* Add some space between the icon and the text */
+  font-size: 24px; 
+  margin-right: 5px; 
 `;
 
 const HtmlIcon = styled(FaHtml5)`
-  color: #E44D26; /* Add the desired color for the HTML icon */
+  color: #E44D26; 
 `;
 
 const CssIcon = styled(FaCss3Alt)`
-  color: #264DE4; /* Add the desired color for the CSS icon */
+  color: #264DE4; 
 `;
 
 const JsIcon = styled(FaJs)`
-  color: #F7DF1E; /* Add the desired color for the JS icon */
+  color: #F7DF1E; 
 `;
 
 const ReactIcon = styled(FaReact)`
-  color: #61DAFB; /* Add the desired color for the React icon */
+  color: #61DAFB; 
 `;
 
 const HeroSection = () => {

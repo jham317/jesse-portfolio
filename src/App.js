@@ -1,23 +1,33 @@
 import React from 'react';
-import data from './data';
-import HeroSection from './components/HeroSection';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PageStyling from './PageStyling';
 import NavBar from './components/NavBar';
+import HeroSection from './components/HeroSection';
 import AboutMeSection from './components/AboutMeSection';
 import ProjectSection from './components/ProjectSection';
 import ContactSection from './components/ContactSection';
 
-const App = () => {
-  const { hero, aboutMe, projects, contact } = data;
 
+
+
+
+const AppRouter = () => {
   return (
-    <>
+    <BrowserRouter>
+      <PageStyling /> {/* Apply the pastel color scheme */}
       <NavBar />
-      <HeroSection hero={hero} />
-      <AboutMeSection aboutMe={aboutMe} />
-      <ProjectSection projects={projects} />
-      <ContactSection contact={contact} />
-    </>
+      <Routes>
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/about" element={<AboutMeSection />} />
+        <Route path="/projects" element={<ProjectSection />} />
+        <Route path="/contact" element={<ContactSection />} />
+      </Routes>
+    </BrowserRouter>
   );
+};
+
+const App = () => {
+  return <AppRouter />;
 };
 
 export default App;
