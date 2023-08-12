@@ -1,45 +1,99 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../ThemeContext';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
-
+import { Icon } from 'react-icons-kit';
+import { ic_brightness_7 } from 'react-icons-kit/md/ic_brightness_7';
+import { ic_brightness_2 } from 'react-icons-kit/md/ic_brightness_2';
+import { ic_home } from 'react-icons-kit/md/ic_home';
+import { ic_person } from 'react-icons-kit/md/ic_person';
+import { ic_work } from 'react-icons-kit/md/ic_work';
+import { ic_mail } from 'react-icons-kit/md/ic_mail';
 
 const NavWrapper = styled.nav`
-  background-color: #333;
-  padding: 10px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  background-color: transparent;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px 10px 10px 10px;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const NavLinksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Label = styled.span`
+  position: absolute;
+  left: 100%; // Immediately to the right of the parent
+  top: 50%; // Center it vertically
+  transform: translateY(-50%); // Shift up by half its own height
+  opacity: 0;
+  transition: opacity 0.3s;
+`;
+
+const StyledNavLink = styled.a`
   color: #fff;
+  position: relative;
   text-decoration: none;
-  margin-right: 20px;
-  font-size: 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse; 
 
-  &:hover {
-    text-decoration: underline;
+  &:hover ${Label} {
+    opacity: 1;
   }
+`;
 
-  &.activeclassname {
+const ThemeToggleButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
     text-decoration: underline;
   }
 `;
 
 const NavBar = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <NavWrapper>
-      <StyledNavLink to="/" activeclassname="activeclassname" exact="true">
-        Home
-      </StyledNavLink>
-      <StyledNavLink to="/about" activeclassname="activeclassname">
-        About
-      </StyledNavLink>
-      <StyledNavLink to="/projects" activeclassname="activeclassname">
-        Projects
-      </StyledNavLink>
-      <StyledNavLink to="/contact" activeclassname="activeclassname">
-        Contact
-      </StyledNavLink>
+      <NavLinksWrapper>
+      <StyledNavLink href="#home" aria-label="Navigate to Home">
+          <Label>Home</Label>
+          <Icon icon={ic_home} size={32} />
+        </StyledNavLink>
+        <StyledNavLink href="#about">
+          <Label>About</Label>
+          <Icon icon={ic_person} size={32} />
+        </StyledNavLink>
+        <StyledNavLink href="#projects">
+          <Label>Projects</Label>
+          <Icon icon={ic_work} size={32} />
+        </StyledNavLink>
+        <StyledNavLink href="#contact">
+          <Label>Contact</Label>
+          <Icon icon={ic_mail} size={32} />
+        </StyledNavLink>
+      </NavLinksWrapper>
+      <ThemeToggleButton onClick={toggleTheme}>
+        {theme === 'light' 
+           ? <Icon icon={ic_brightness_2} size={32} />   // Moon icon for light mode
+           : <Icon icon={ic_brightness_7} size={32} />  // Sun icon for dark mode
+        }
+      </ThemeToggleButton>
     </NavWrapper>
   );
-};
+}
 
 export default NavBar;

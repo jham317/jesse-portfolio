@@ -4,6 +4,7 @@ import data from '../data';
 
 const AboutMeWrapper = styled.div`
   padding: 50px;
+  height: 100vh;
 `;
 
 const AboutMeContent = styled.div`
@@ -14,14 +15,15 @@ const AboutMeContent = styled.div`
 
 const Title = styled.h2`
   font-size: 28px;
-  color: #333;
+  color: ${props => props.theme.text};
 `;
 
 const Description = styled.p`
   font-size: 18px;
-  color: #666;
+  color: ${props => props.theme.text};
   line-height: 1.6;
 `;
+
 
 const AboutMeSection = ({ aboutMe }) => {
   const { title, description } = data.aboutMe; // Destructure the aboutMe property

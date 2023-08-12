@@ -1,6 +1,11 @@
 const data = {
-  name: 'Jesse Hamilton',
-  introduction: "Hello my name is Jesse Hamilton, a passionate React Web Developer, based in Montreal, Quebec.",
+  hero: {
+    name: 'Jesse Hamilton',
+    introduction: "Hello my name is Jesse Hamilton, a passionate React Web Developer, based in Montreal, Quebec.",
+    title: 'React Web Developer',
+    imageUrl: 'IMG_7908.png'
+  },
+
   projects: [
     {
       title: 'Nyan Cat Game',
@@ -11,6 +16,7 @@ const data = {
     // ... other projects
   ],
   contact: {
+    title: 'Contact Me',
     email: 'jesse.hamilton317@gmail.com',
     github: 'https://github.com/jham317',
     linkedin: 'https://www.linkedin.com/in/jesse-hamilton-5b4103251//',
@@ -19,8 +25,13 @@ const data = {
   aboutMe: {
     title: 'About Me',
     description: 'I am entering the world of Web Development and looking to carve out a career in tech. I have always had an eye for creativity and design and love the intersectionality that Web Development allows. Being able to create both dynamic and responsive webpages, as well as visually engaging interface for the use. In my time at Concordia Bootcamps I have developed my skills in HTML, CSS, and React. I am looking forward to expanding my knowledge in an ever expanding tech landscape and offering my skills to contribute to companies in need of a Web Developer',
-    skills: ['Html', 'CSS', 'Javascript', 'React.js'],
+    skills: [
+      { name: 'Html', icon: 'FaHtml5', color: '#E44D26' },
+      { name: 'CSS', icon: 'FaCss3Alt', color: '#264DE4' },
+      { name: 'Javascript', icon: 'FaJs', color: '#F7DF1E' },
+      { name: 'React.js', icon: 'FaReact', color: '#61DAFB' },
+    ],
   },
-};
+}
 
 export default data;

@@ -1,8 +1,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import data from '../data';
 
 const ContactWrapper = styled.div`
   padding: 50px;
+  height: 100vh;
+`;
+
+const Title = styled.h2`
+  font-size: 28px;
+  color: ${props => props.theme.text};
+  text-align: center;
+  margin-bottom: 20px;
 `;
 
 const Form = styled.form`
@@ -13,8 +22,8 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  background-color: #ffffff;  // This sets the background to white
-  border: 1px solid #ccc;
+  background-color: #ffffff;  
+  border: 1px solid ${props => props.theme.text};
   padding: 10px;
   margin-bottom: 10px;
   width: 100%;
@@ -41,8 +50,6 @@ const Textarea = styled.textarea`
     outline: none;
   }
 `;
-
-
 
 const Button = styled.button`
   padding: 10px 15px;
@@ -74,9 +81,11 @@ const ContactSection = () => {
         // Here you would typically send formData to a server to handle the email sending.
     };
 
+    const { title } = data.contact; // Destructure the contact property from data
+
     return (
         <ContactWrapper id="contact">
-            <h2>Contact Me</h2>
+            <Title>{title}</Title>
             <Form onSubmit={handleSubmit}>
                 <Input 
                     type="text" 
@@ -86,9 +95,22 @@ const ContactSection = () => {
                     onChange={handleChange}
                     required 
                 />
-<Input type="email" placeholder="Your Email" required />
-<Textarea rows="5" placeholder="Your Message" required></Textarea>
-
+                <Input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Your Email" 
+                    value={formData.email} 
+                    onChange={handleChange}
+                    required 
+                />
+                <Textarea 
+                    name="message" 
+                    rows="5" 
+                    placeholder="Your Message" 
+                    value={formData.message} 
+                    onChange={handleChange}
+                    required
+                ></Textarea>
                 <Button type="submit">Send</Button>
             </Form>
         </ContactWrapper>
