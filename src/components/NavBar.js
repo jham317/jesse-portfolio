@@ -17,8 +17,8 @@ const NavWrapper = styled.nav`
   background-color: transparent;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 70px; 
+  width: 100%;
   padding: 10px 10px 10px 10px;
 `;
 
@@ -30,9 +30,9 @@ const NavLinksWrapper = styled.div`
 
 const Label = styled.span`
   position: absolute;
-  left: 100%; // Immediately to the right of the parent
-  top: 50%; // Center it vertically
-  transform: translateY(-50%); // Shift up by half its own height
+  left: 100%; 
+  top: 50%; 
+  transform: translateY(-50%); 
   opacity: 0;
   transition: opacity 0.3s;
 `;
@@ -54,7 +54,7 @@ const StyledNavLink = styled.a`
 const ThemeToggleButton = styled.button`
   position: absolute;
   top: 10px;
-  right: 25px;
+  right: 20px; 
   background: transparent;
   border: none;
   color: #fff;
@@ -88,8 +88,8 @@ const NavBar = () => {
       </NavLinksWrapper>
       <ThemeToggleButton onClick={toggleTheme}>
         {theme === 'light' 
-           ? <Icon icon={ic_brightness_2} size={32} />   // Moon icon for light mode
-           : <Icon icon={ic_brightness_7} size={32} />  // Sun icon for dark mode
+          ? <Icon icon={ic_brightness_2} size={32} />  
+          : <Icon icon={ic_brightness_7} size={32} />  
         }
       </ThemeToggleButton>
     </NavWrapper>

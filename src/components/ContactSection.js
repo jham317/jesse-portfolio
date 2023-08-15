@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import data from '../data';
+import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
+
 
 const ContactWrapper = styled.div`
   padding: 50px;
@@ -12,6 +14,7 @@ const Title = styled.h2`
   color: ${props => props.theme.text};
   text-align: center;
   margin-bottom: 20px;
+  padding-bottom: 100px;
 `;
 
 const Form = styled.form`
@@ -63,6 +66,13 @@ const Button = styled.button`
   }
 `;
 
+const ContactIcons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 30px; 
+  margin-top: 200px;
+`;
+
 const ContactSection = () => {
     const [formData, setFormData] = useState({
         name: '',
@@ -76,12 +86,22 @@ const ContactSection = () => {
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log(formData);
-        // Here you would typically send formData to a server to handle the email sending.
-    };
+      event.preventDefault();
+      console.log(formData);
+      
+    
+      const savedData = JSON.parse(localStorage.getItem('savedFormData')) || [];
+      savedData.push(formData);
+      localStorage.setItem('savedFormData', JSON.stringify(savedData));
+    
+      setFormData({
+          name: '',
+          email: '',
+          message: ''
+      });
+  };
 
-    const { title } = data.contact; // Destructure the contact property from data
+  const { title, email, github, linkedin } = data.contact;
 
     return (
         <ContactWrapper id="contact">
@@ -113,8 +133,20 @@ const ContactSection = () => {
                 ></Textarea>
                 <Button type="submit">Send</Button>
             </Form>
+            <ContactIcons>
+                <a href={`mailto:${email}`} target="_blank" rel="noopener noreferrer" aria-label="Email">
+                    <FaEnvelope size={50} color="#333" />
+                </a>
+                <a href={github} target="_blank" rel="noopener noreferrer" aria-label="Github">
+                    <FaGithub size={50} color="#333" />
+                </a>
+                <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <FaLinkedin size={50} color="#333" />
+                </a>
+            </ContactIcons>
         </ContactWrapper>
     );
 };
+
 
 export default ContactSection;

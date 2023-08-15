@@ -4,52 +4,68 @@ import data from '../data';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const ProjectsWrapper = styled.div`
-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center; 
   padding: 50px;
-  gap: 30px;  // spacing between projects
+  gap: 30px;  
 `;
 
 const ProjectCard = styled.div`
-  width: calc(30% - 20px);
+  width: 90%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;  
+  align-items: center; 
+  justify-content: center;  
   border-radius: 10px;
   overflow: hidden;
-  position: relative;
+  position: relative;  
 `;
 
 const ProjectTitle = styled.h3`
-  font-size: 20px;
+  flex: 1; 
+  font-size: 32px;
   text-align: center;
+  margin-bottom: 20px;  
+  padding-bottom: 80px;
   color: ${props => props.theme.text};
 `;
 
 const ProjectDescription = styled.p`
+  flex: 1;  
   font-size: 16px;
   text-align: center;
   color: ${props => props.theme.text};
 `;
 
 const ImageWrapper = styled.div`
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300px;  /* Adjust the height as needed */
+  width: 60%;  
+  height: 50vh;
+  margin-bottom: 50px;  
+`;
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; 
+  margin-bottom: 20px;  
 `;
 
 const ProjectImage = styled.img`
   max-width: 100%;
   max-height: 100%;
+  object-fit: cover;
   transition: opacity 0.3s;
 `;
 
-const ImageSlider = styled.div`
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(-${props => props.index * 100}%);
-`;
 
 const Arrow = styled.button`
   position: absolute;
@@ -59,7 +75,7 @@ const Arrow = styled.button`
   color: white;
   border: none;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 40px;
   z-index: 1;
 
   &:hover {
@@ -77,46 +93,39 @@ const RightArrow = styled(Arrow)`
 
 const ProjectSection = () => {
   const { projects } = data;
-  const [currentImages, setCurrentImages] = useState({});
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
 
-  const handleArrowClick = (projectIndex, direction) => {
-    const currentImageIndex = currentImages[projectIndex] || 0;
-    const adjustedIndex = direction === 'prev' 
-      ? (currentImageIndex - 1 + projects[projectIndex].imageUrl.length) % projects[projectIndex].imageUrl.length 
-      : (currentImageIndex + 1) % projects[projectIndex].imageUrl.length;
-    
-    setCurrentImages({
-      ...currentImages,
-      [projectIndex]: adjustedIndex
-    });
+  
+
+  const handleArrowClick = (direction) => {
+    const maxIndex = projects.length - 1;
+    if (direction === 'prev') {
+      setCurrentProjectIndex((oldIndex) => (oldIndex === 0 ? maxIndex : oldIndex - 1));
+    } else if (direction === 'next') {
+      setCurrentProjectIndex((oldIndex) => (oldIndex === maxIndex ? 0 : oldIndex + 1));
+    }
   };
+
+  const currentProject = projects[currentProjectIndex];
+
 
   return (
     <ProjectsWrapper>
-      {projects.map((project, projectIndex) => (
-        <ProjectCard key={projectIndex}>
-          <ProjectTitle>{project.title}</ProjectTitle>
-          <ProjectDescription>{project.description}</ProjectDescription>
-          <ImageWrapper>
-            <ImageSlider index={currentImages[projectIndex] || 0}>
-              {project.imageUrl.map((url, imgIndex) => (
-                <ProjectImage 
-                  key={imgIndex}
-                  src={url}
-                  alt={`Project ${projectIndex + 1}`}
-                  style={{ opacity: imgIndex === (currentImages[projectIndex] || 0) ? 1 : 0 }}
-                />
-              ))}
-            </ImageSlider>
-            {project.imageUrl.length > 1 && (
-              <>
-                <LeftArrow onClick={() => handleArrowClick(projectIndex, 'prev')}><FaArrowLeft /></LeftArrow>
-                <RightArrow onClick={() => handleArrowClick(projectIndex, 'next')}><FaArrowRight /></RightArrow>
-              </>
-            )}
-          </ImageWrapper>
-        </ProjectCard>
-      ))}
+      <ProjectCard>
+        <TextWrapper>
+          <ProjectTitle>{currentProject.title}</ProjectTitle>
+          <ProjectDescription>{currentProject.description}</ProjectDescription>
+        </TextWrapper>
+        <ImageWrapper>
+          <ProjectImage src={currentProject.imageUrl[0]} alt={`Project ${currentProjectIndex + 1}`} />
+        </ImageWrapper>
+        <LeftArrow onClick={() => handleArrowClick('prev')}>
+          <FaArrowLeft />
+        </LeftArrow>
+        <RightArrow onClick={() => handleArrowClick('next')}>
+          <FaArrowRight />
+        </RightArrow>
+      </ProjectCard>
     </ProjectsWrapper>
   );
 };

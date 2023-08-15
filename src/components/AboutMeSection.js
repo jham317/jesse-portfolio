@@ -3,19 +3,20 @@ import styled from 'styled-components';
 import data from '../data';
 
 const AboutMeWrapper = styled.div`
+  display: flex;         
+  justify-content: center;  
+  align-items: center;      
   padding: 50px;
-  height: 100vh;
 `;
 
 const AboutMeContent = styled.div`
   max-width: 600px;
-  margin: 0 auto;
   text-align: center;
 `;
-
 const Title = styled.h2`
   font-size: 28px;
   color: ${props => props.theme.text};
+  padding-bottom: 100px;
 `;
 
 const Description = styled.p`
@@ -26,7 +27,7 @@ const Description = styled.p`
 
 
 const AboutMeSection = ({ aboutMe }) => {
-  const { title, description } = data.aboutMe; // Destructure the aboutMe property
+  const { title, description } = data.aboutMe; 
 
   return (
     <AboutMeWrapper id="about">

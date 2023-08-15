@@ -1,14 +1,14 @@
 export const lightTheme = {
-  body: '#F8C8DC', // pastel pink for light mode
+  body: '#F8C8DC', 
   text: '#333',
-  link: '#F8C8DC', // pastel pink for light mode links
-  linkHover: '#d49ca0' // you can define a hover color for light mode
+  link: '#F8C8DC', 
+  linkHover: '#d49ca0' 
 };
 
 export const darkTheme = {
-  body: '#333', // grey color for dark mode background
-  text: '#F8C8DC', // pastel pink for dark mode text
-  link: '#F8C8DC', // slightly lighter pink for dark mode links
-  linkHover: '#d49ca0' // define a dark mode link hover color
+  body: '#333', 
+  text: '#F8C8DC', 
+  link: '#F8C8DC', 
+  linkHover: '#d49ca0' 
 };
   
