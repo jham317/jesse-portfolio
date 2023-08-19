@@ -20,12 +20,25 @@ const NavWrapper = styled.nav`
   height: 70px; 
   width: 100%;
   padding: 10px 10px 10px 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: left;
+    height: auto;
+    padding: 10px 0;
+  }
 `;
 
 const NavLinksWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;  
+  }
 `;
 
 const Label = styled.span`
@@ -35,6 +48,10 @@ const Label = styled.span`
   transform: translateY(-50%); 
   opacity: 0;
   transition: opacity 0.3s;
+
+  @media (max-width: 768px) {
+    display: none;  // Hide labels on smaller screens
+  }
 `;
 
 const StyledNavLink = styled.a`
@@ -49,6 +66,10 @@ const StyledNavLink = styled.a`
   &:hover ${Label} {
     opacity: 1;
   }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
+  }
 `;
 
 const ThemeToggleButton = styled.button`
@@ -59,10 +80,23 @@ const ThemeToggleButton = styled.button`
   border: none;
   color: #fff;
   cursor: pointer;
+  text-shadow: 
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+  
   &:hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 768px) {
+    top: auto; 
+    bottom: 10px;  
+  }
 `;
+
 
 const NavBar = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);

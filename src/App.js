@@ -7,6 +7,7 @@ import ContactSection from './components/ContactSection';
 import { ThemeProvider } from './ThemeContext';
 import GlobalStyle from './GlobalStyle';
 
+
 const App = () => {
   return (
     <ThemeProvider>
