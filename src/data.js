@@ -39,6 +39,7 @@ const data = {
   aboutMe: {
     title: 'About Me',
     description: 'I am entering the world of Web Development and looking to carve out a career in tech. I have always had an eye for creativity and design and love the intersectionality that Web Development allows. Being able to create both dynamic and responsive webpages, while curating a visually engaging interface for the user excites me. In my time at Concordia Bootcamps I have developed my skills in HTML, CSS, and React and hope to continue to expand my knowledge. After working for many years as a chef and taking a care and pride in my work I am looking for a new challenge. Working as a chef taught me a work ethic and dedication to a craft that I will carry on to my next career, as well as learning how to work within a team setting and knowing when to lead and when to lay back and allow others to thrive and help each other out constantly.  ',
+    imageUrl: 'Subject.png',
     skills: [
       { name: 'Html', icon: 'FaHtml5', color: '#E44D26' },
       { name: 'CSS', icon: 'FaCss3Alt', color: '#264DE4' },

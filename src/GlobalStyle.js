@@ -22,17 +22,17 @@ h2 {
   font-size: 28px;
 }
 
-// Media query for mobile screens
+
 @media (max-width: 768px) {
   h2 {
-    font-size: 24px; // Slightly reduce font size for h2 on mobile
+    font-size: 24px; 
   }
 }
 
-// Media query for tablet screens
+
 @media (min-width: 769px) and (max-width: 1024px) {
   h2 {
-    font-size: 26px; // You can adjust the size for tablet if you want, or remove this block entirely
+    font-size: 26px; 
   }
 }
 

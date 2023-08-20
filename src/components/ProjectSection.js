@@ -70,9 +70,11 @@ const TextWrapper = styled.div`
 
 const MainTitle = styled.h2`
   font-size: 36px;
-  text-align: center;
   color: ${props => props.theme.text};
+  margin-bottom: 3px;
+  padding-bottom: 30px;
   animation: ${waveAnimation} 1.5s infinite;
+  text-align: center;
 
   @media (max-width: 768px) {
     font-size: 28px;
@@ -106,7 +108,7 @@ const ProjectDescription = styled.p`
   
   @media (max-width: 768px) {
     font-size: 14px;
-    text-align: center; // optional: for better alignment on smaller screens
+    text-align: center; 
   }
 `;
 
@@ -124,7 +126,7 @@ const Arrow = styled.button`
   transition: opacity 0.3s; 
 
   @media (max-width: 768px) {
-    font-size: 40px;  // Adjust the arrow size
+    font-size: 40px; 
   }
 `;
 
@@ -132,7 +134,7 @@ const LeftArrow = styled(Arrow)`
   left: -10%;
 
   @media (max-width: 768px) {
-    left: 5%;  // Adjust position to avoid overlapping
+    left: 5%; 
   }
 `;
 
@@ -141,7 +143,7 @@ const RightArrow = styled(Arrow)`
   right: -10%;
 
   @media (max-width: 768px) {
-    right: 5%;  // Adjust position to avoid overlapping
+    right: 5%;  
   }
 `;
 
@@ -174,7 +176,7 @@ const ProjectImage = styled.img`
   object-fit: cover;
   z-index: 1;
   border: 3px solid ${props => props.theme.text};
-  transition: transform 0.2s;  // Add transition for smoother effect
+  transition: transform 0.2s;  
   
   &:hover + ${ArrowsWrapper} ${Arrow} {
     opacity: 0.0;

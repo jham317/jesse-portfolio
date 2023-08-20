@@ -50,7 +50,7 @@ const Label = styled.span`
   transition: opacity 0.3s;
 
   @media (max-width: 768px) {
-    display: none;  // Hide labels on smaller screens
+    display: none;  
   }
 `;
 
@@ -80,12 +80,7 @@ const ThemeToggleButton = styled.button`
   border: none;
   color: #fff;
   cursor: pointer;
-  text-shadow: 
-    -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-    1px 1px 0 #000;
-
+  
   
   &:hover {
     text-decoration: underline;

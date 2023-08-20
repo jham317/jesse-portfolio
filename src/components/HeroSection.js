@@ -4,7 +4,6 @@ import { FaHtml5, FaCss3Alt, FaJs, FaReact } from 'react-icons/fa';
 import data from '../data';
 import { motion } from 'framer-motion';
 
-
 const HeroSectionWrapper = styled.div`
   padding: 30px;
   text-align: center;
@@ -16,15 +15,16 @@ const HeroSectionWrapper = styled.div`
 `;
 
 const HeroContent = styled.div`
-  max-width: 600px;
+  max-width: 800px; /* Adjust this value as needed */
   margin: 0 auto;
-  text-align: center;  // Ensures all inner content is centrally aligned
+  text-align: center;
 
   @media (max-width: 768px) {
-    max-width: 80%;  // Adjust based on your design preference
-    padding: 10px 0;  // Some vertical padding can help space out the content
+    max-width: 90%; /* Adjust this value for even narrower width */
+    padding: 10px 0;
   }
 `;
+
 const ProfileImage = styled.img`
   width: 400px;
   height: 400px;
@@ -42,9 +42,8 @@ const ProfileImage = styled.img`
 const HeroTitle = styled.h1`
   font-size: 48px;
   color: ${props => props.color || props.theme.text};
-  font-family: 'Playfair Display', serif; 
+  font-family: 'Playfair Display', serif;
   padding: 5px 40px;
-
 
   &:hover {
     transform: scale(1.05);
@@ -71,13 +70,8 @@ const SkillList = styled.ul`
   padding: 0;
   margin-top: 30px;
   display: flex;
-  justify-content: space-between;
-
-  @media (max-width: 768px) {
-    flex-wrap: wrap;  // Allow items to wrap on smaller screens
-    justify-content: space-around; 
-    margin-top: 15px;
-  }
+  justify-content: center; /* Center items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap when exceeding container */
 `;
 
 const SkillItem = styled.li`
@@ -85,50 +79,54 @@ const SkillItem = styled.li`
   display: flex;
   align-items: center;
   margin-right: 20px;
+  margin-bottom: 10px; /* Adjust this value to control spacing */
 
   @media (max-width: 768px) {
     font-size: 16px;
-    flex: 0 0 calc(50% - 10px); // Make each item occupy roughly 50% width on smaller screens, accounting for margins
-    margin-right: 0;  // Remove right margin to ensure items fit well on smaller screens
-    margin-bottom: 5px;  // Add some bottom margin to give space when items stack on smaller screens
+    flex: 0 0 calc(33.33% - 10px); /* Adjust this value for proper spacing and wrapping */
+    margin-right: 10px;
+    margin-left: 10px;
     justify-content: center;
   }
 `;
-
 const IconWrapper = styled(motion.div)`
   font-size: 55px;
   padding-top: 20px;
   margin-right: 5px;
+
+  @media (max-width: 768px) {
+    font-size: 30px; /* Adjust this value for smaller icon size */
+  }
 `;
+
+
 const dropAnimation = {
-  initial: { y: "-200vh" },
+  initial: { y: '-200vh' },
   animate: { y: 0 },
   transition: {
-    type: "tween",
-    duration: 5.0,   
-    ease: "easeOut"  
-  }
+    type: 'tween',
+    duration: 5.0,
+    ease: 'easeOut',
+  },
 };
 
-
-
 const HtmlIcon = styled(FaHtml5)`
-  color: #E44D26;
+  color: #e44d26;
 `;
 
 const CssIcon = styled(FaCss3Alt)`
-  color: #264DE4;
+  color: #264de4;
 `;
 
 const JsIcon = styled(FaJs)`
-  color: #F7DF1E;
+  color: #f7df1e;
 `;
 
 const ReactIcon = styled(FaReact)`
-  color: #61DAFB;
+  color: #61dafb;
 `;
 
-const getIconComponent = (iconName) => {
+const getIconComponent = iconName => {
   switch (iconName) {
     case 'FaHtml5':
       return HtmlIcon;
@@ -143,29 +141,27 @@ const getIconComponent = (iconName) => {
   }
 };
 
-
-
 const HeroSection = () => {
   const { hero, aboutMe } = data;
-
 
   return (
     <HeroSectionWrapper>
       <HeroContent>
-      <ProfileImage src={process.env.PUBLIC_URL + '/' + hero.imageUrl} alt="Profile Image" />
-      <HeroTitle>
-          {hero.title}
-        </HeroTitle>
+        <ProfileImage src={process.env.PUBLIC_URL + '/' + hero.imageUrl} alt="Profile Image" />
+        <HeroTitle>{hero.title}</HeroTitle>
         <Description>{hero.introduction}</Description>
         <SkillList>
           {aboutMe.skills.map(skill => {
-            const IconComponent = getIconComponent(skill.icon);  
+            const IconComponent = getIconComponent(skill.icon);
             return (
               <SkillItem key={skill.name}>
-              <IconWrapper initial={dropAnimation.initial} animate={dropAnimation.animate} transition={dropAnimation.transition}>
-  <IconComponent style={{ color: skill.color }} />
-</IconWrapper>
-
+                <IconWrapper
+                  initial={dropAnimation.initial}
+                  animate={dropAnimation.animate}
+                  transition={dropAnimation.transition}
+                >
+                  <IconComponent style={{ color: skill.color }} />
+                </IconWrapper>
                 {skill.name}
               </SkillItem>
             );
